@@ -1,0 +1,52 @@
+/*
+ * 本项目使用IDEA集成开发环境，所以在gradle构建脚本中添加了 'idea' 插件
+ * 第一次初始化项目时，不建议IDE直接打开工程，因为每个人的开发环境和构建工具不同
+ * 建议使用如下步骤
+ * git clone git@github.com:lanshiqin/start.git
+ * cd start
+ * ./gradlew idea
+ * 执行完成后，会生成一个.ipr文件，这个就是IDEA的工程文件，此时用IDEA打开这个文件即可。
+ */
+
+// 配置 gradle 构建工具
+wrapper {
+    gradleVersion = '6.4.1'
+}
+
+// 所有项目模块配置
+allprojects {
+    apply plugin: 'idea'
+}
+
+// 子项目模块配置
+subprojects {
+    apply plugin: 'java'
+
+    group = 'com.lanshiqin.start'
+    version = new Date().format('yyyyMMdd') + '-SNAPSHOT'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.compilerArgs << "-Xlint:unchecked"
+        options.compilerArgs << "-Xlint:deprecation"
+    }
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://repo.maven.apache.org/maven2" }
+    }
+
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+        testImplementation 'org.testng:testng:7.1.1'
+    }
+
+    test {
+        useTestNG()
+    }
+
+}
