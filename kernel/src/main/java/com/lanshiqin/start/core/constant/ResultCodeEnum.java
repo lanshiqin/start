@@ -22,7 +22,7 @@ public enum ResultCodeEnum {
         return describe;
     }
 
-    ResultCodeEnum(Integer code, String describe) {
+    ResultCodeEnum(final Integer code, final String describe) {
         this.code = code;
         this.describe = describe;
     }

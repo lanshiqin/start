@@ -3,10 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
 }
 
-//application {
-//    mainClass = 'org.gradle.sample.app.MainKt'
-//}
-
 repositories {
     // 优先使用国内仓库源
     maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }

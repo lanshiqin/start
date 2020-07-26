@@ -16,3 +16,12 @@ sourceSets{
         }
     }
 }
+
+coverage {
+    excludePackages = [
+            "com.lanshiqin.start.entity"
+    ]
+    excludeClasses = [
+
+    ]
+}

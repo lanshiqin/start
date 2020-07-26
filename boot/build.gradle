@@ -2,6 +2,23 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
 }
 
+style {
+    excludePackages = [
+    ]
+    excludeClasses = [
+            "com.lanshiqin.start.StartApplication"
+    ]
+}
+
+coverage {
+    excludePackages = [
+
+    ]
+    excludeClasses = [
+            "com.lanshiqin.start.StartApplication"
+    ]
+}
+
 springBoot {
     mainClassName = 'com.lanshiqin.start.StartApplication'
 }

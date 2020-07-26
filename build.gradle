@@ -7,6 +7,14 @@
  * ./gradlew idea
  * 执行完成后，会生成一个.ipr文件，这个就是IDEA的工程文件，此时用IDEA打开这个文件即可。
  */
+buildscript {
+    dependencies {
+        classpath "mysql:mysql-connector-java:$mysqlVersion"
+    }
+}
+plugins {
+    id "org.flywaydb.flyway" version "${flywayVersion}"
+}
 
 // 配置 gradle 构建工具
 wrapper {
@@ -44,15 +52,26 @@ subprojects {
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
         implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-starter-validation:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
         testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
+
+
+        // 文档
         implementation("com.github.xiaoymin:knife4j-spring-boot-starter:$knife4jVersion")
 
-        testImplementation ("org.testng:testng:$testNGVersion")
-        testImplementation ("org.mockito:mockito-core:$mockitoVersion")
+        // 测试工具
+        testImplementation("org.testng:testng:$testNGVersion")
+        testImplementation("org.mockito:mockito-core:$mockitoVersion")
 
+        // 增强工具
         implementation("org.projectlombok:lombok:$lombokVersion")
+
+        // 数据库相关
+        implementation("com.baomidou:mybatis-plus-boot-starter:$mybatisPlusVersion")
+        implementation("mysql:mysql-connector-java:$mysqlVersion")
 
 
     }
@@ -61,10 +80,34 @@ subprojects {
         useTestNG()
     }
 
+    apply from: "$rootDir/gradle/config/scripts/style.gradle"
+    apply from: "$rootDir/gradle/config/scripts/coverage.gradle"
+
+    coverage.excludePackages = [
+    ]
+
+    coverage.excludeClasses = [
+    ]
+
+    style.excludePackages = [
+    ]
+
+    style.excludeClasses = [
+    ]
+
 }
 
 configure(subprojects - project(':boot')) {
     project(':boot').dependencies {
         implementation(project)
     }
+}
+
+apply from: "$rootDir/gradle/config/scripts/idea.gradle"
+
+flyway {
+    url = 'jdbc:mysql://localhost:3306/start?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true'
+    user = 'root'
+    password = '12345678'
+    locations = ["filesystem:$rootDir/gradle/config/migration"]
 }

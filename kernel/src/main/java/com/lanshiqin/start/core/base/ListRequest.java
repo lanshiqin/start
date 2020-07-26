@@ -15,7 +15,7 @@ public class ListRequest {
         return pageNo;
     }
 
-    public void setPageNo(Long pageNo) {
+    public void setPageNo(final Long pageNo) {
         this.pageNo = pageNo;
     }
 
@@ -23,7 +23,7 @@ public class ListRequest {
         return pageSize;
     }
 
-    public void setPageSize(Long pageSize) {
+    public void setPageSize(final Long pageSize) {
         this.pageSize = pageSize;
     }
 
@@ -31,7 +31,7 @@ public class ListRequest {
         return sortField;
     }
 
-    public void setSortField(String sortField) {
+    public void setSortField(final String sortField) {
         this.sortField = sortField;
     }
 
@@ -39,7 +39,7 @@ public class ListRequest {
         return sort;
     }
 
-    public void setSort(String sort) {
+    public void setSort(final String sort) {
         this.sort = sort;
     }
 }

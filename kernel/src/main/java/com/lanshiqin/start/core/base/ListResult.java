@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * 列表响应结果
+ *
  * @author 蓝士钦
  */
 public class ListResult<T> {
@@ -15,7 +16,7 @@ public class ListResult<T> {
         return totalItem;
     }
 
-    public void setTotalItem(Long totalItem) {
+    public void setTotalItem(final Long totalItem) {
         this.totalItem = totalItem;
     }
 
@@ -23,7 +24,7 @@ public class ListResult<T> {
         return totalPage;
     }
 
-    public void setTotalPage(Long totalPage) {
+    public void setTotalPage(final Long totalPage) {
         this.totalPage = totalPage;
     }
 
@@ -31,7 +32,7 @@ public class ListResult<T> {
         return records;
     }
 
-    public void setRecords(List<T> records) {
+    public void setRecords(final List<T> records) {
         this.records = records;
     }
 }

@@ -1,7 +1,6 @@
 package com.lanshiqin.start.core.base;
 
 import com.lanshiqin.start.core.constant.ResultCodeEnum;
-import lombok.Data;
 
 /**
  * 基础返回体
@@ -27,7 +26,7 @@ public class BaseResponse<T> {
         return resultCode;
     }
 
-    public void setResultCode(Integer resultCode) {
+    public void setResultCode(final Integer resultCode) {
         this.resultCode = resultCode;
     }
 
@@ -35,7 +34,7 @@ public class BaseResponse<T> {
         return resultMsg;
     }
 
-    public void setResultMsg(String resultMsg) {
+    public void setResultMsg(final String resultMsg) {
         this.resultMsg = resultMsg;
     }
 
@@ -43,7 +42,7 @@ public class BaseResponse<T> {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(final T data) {
         this.data = data;
     }
 
@@ -56,7 +55,7 @@ public class BaseResponse<T> {
      * @param <T>        返回数据类型
      * @return 响应数据
      */
-    public static <T> BaseResponse<T> response(Integer resultCode, String message, T data) {
+    public static <T> BaseResponse<T> response(final Integer resultCode, final String message, final T data) {
         BaseResponse<T> response = new BaseResponse<>();
         response.setResultCode(resultCode);
         response.setResultMsg(message);
@@ -70,7 +69,7 @@ public class BaseResponse<T> {
      * @param message 成功信息
      * @return 操作成功信息对象
      */
-    public static BaseResponse<String> success(String message) {
+    public static BaseResponse<String> success(final String message) {
         return response(ResultCodeEnum.SUCCESS.getCode(), message, null);
     }
 
@@ -81,7 +80,7 @@ public class BaseResponse<T> {
      * @param data    成功内容
      * @return 操作成功信息和内容对象
      */
-    public static <T> BaseResponse<T> success(String message, T data) {
+    public static <T> BaseResponse<T> success(final String message, final T data) {
         return response(ResultCodeEnum.SUCCESS.getCode(), message, data);
     }
 
@@ -93,7 +92,7 @@ public class BaseResponse<T> {
      * @param <T>     结果集对象类型
      * @return 操作成功信息，和结果集对象
      */
-    public static <T> BaseResponse<ListResult<T>> list(String message, ListResult<T> data) {
+    public static <T> BaseResponse<ListResult<T>> list(final String message, final ListResult<T> data) {
         return response(ResultCodeEnum.SUCCESS.getCode(), message, data);
     }
 
@@ -103,7 +102,7 @@ public class BaseResponse<T> {
      * @param message 操作失败信息
      * @return 操作失败信息对象
      */
-    public static BaseResponse<String> fail(String message) {
+    public static BaseResponse<String> fail(final String message) {
         return response(ResultCodeEnum.BUSINESS_EXCEPTION.getCode(), message, null);
     }
 
@@ -115,7 +114,7 @@ public class BaseResponse<T> {
      * @param <T>     操作失败数据类型
      * @return 操作失败信息对象
      */
-    public static <T> BaseResponse<T> fail(String message, T data) {
+    public static <T> BaseResponse<T> fail(final String message, final T data) {
         return response(ResultCodeEnum.BUSINESS_EXCEPTION.getCode(), message, data);
     }
 
@@ -127,7 +126,7 @@ public class BaseResponse<T> {
      * @param <T>     操系统错误数据类型
      * @return 系统错误信息对象
      */
-    public static <T> BaseResponse<T> error(String message, T data) {
+    public static <T> BaseResponse<T> error(final String message, final T data) {
         return response(ResultCodeEnum.SYSTEM_EXCEPTION.getCode(), message, data);
     }
 }
