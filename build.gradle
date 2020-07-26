@@ -34,6 +34,8 @@ subprojects {
     }
 
     repositories {
+        // 优先使用国内仓库源
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
         jcenter()
         mavenCentral()
         maven { url "https://repo.maven.apache.org/maven2" }
@@ -45,11 +47,24 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
-        testImplementation "org.testng:testng:$testNGVersion"
+        implementation("com.github.xiaoymin:knife4j-spring-boot-starter:$knife4jVersion")
+
+        testImplementation ("org.testng:testng:$testNGVersion")
+        testImplementation ("org.mockito:mockito-core:$mockitoVersion")
+
+        implementation("org.projectlombok:lombok:$lombokVersion")
+
+
     }
 
     test {
         useTestNG()
     }
 
+}
+
+configure(subprojects - project(':boot')) {
+    project(':boot').dependencies {
+        implementation(project)
+    }
 }

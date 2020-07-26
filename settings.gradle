@@ -10,3 +10,6 @@
 rootProject.name = 'start'
 
 include 'boot'
+include 'kernel'
+include 'api'
+include 'service'
