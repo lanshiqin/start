@@ -9,7 +9,8 @@ public enum ResultCodeEnum {
 
     SUCCESS(2000, "操作成功"),
     SYSTEM_EXCEPTION(5000, "系统异常"),
-    BUSINESS_EXCEPTION(4000, "业务异常");
+    BUSINESS_EXCEPTION(4000, "业务异常"),
+    UN_AUTH_EXCEPTION(4001, "未授权");
 
     private final Integer code;
     private final String describe;

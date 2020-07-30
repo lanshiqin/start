@@ -3,17 +3,17 @@ package com.lanshiqin.start.core.exception;
 import com.lanshiqin.start.core.constant.ResultCodeEnum;
 
 /**
- * 业务异常
+ * 系统异常
  *
  * @author 蓝士钦
  */
-public class BusinessException extends RuntimeException {
+public class SystemException extends RuntimeException {
 
     private Integer resultCode;
 
-    public BusinessException(final String resultMsg) {
+    public SystemException(final String resultMsg) {
         super(resultMsg);
-        this.resultCode = ResultCodeEnum.BUSINESS_EXCEPTION.getCode();
+        this.resultCode = ResultCodeEnum.SYSTEM_EXCEPTION.getCode();
     }
 
     public Integer getResultCode() {
