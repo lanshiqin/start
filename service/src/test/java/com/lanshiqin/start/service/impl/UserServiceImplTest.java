@@ -12,11 +12,16 @@ public class UserServiceImplTest {
 
     @Test
     public void testAddUser() {
-        try{
+        try {
             userServiceImpl.addUser(null);
-        }catch (Exception e){
+        } catch (Exception e) {
             Assert.assertEquals(e.getMessage(), "姓名不能为空");
         }
-        userServiceImpl.addUser("");
+    }
+
+    @Test
+    public void testAddUserWithName() {
+        String userIdActual = userServiceImpl.addUser("name");
+        Assert.assertNotNull(userIdActual);
     }
 }

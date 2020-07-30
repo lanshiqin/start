@@ -1,14 +1,14 @@
 package com.lanshiqin.start.entity;
 
 public class User {
-    private Long userId;
+    private String userId;
     private String name;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(final Long userId) {
+    public void setUserId(final String userId) {
         this.userId = userId;
     }
 

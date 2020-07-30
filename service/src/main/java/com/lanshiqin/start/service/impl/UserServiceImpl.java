@@ -6,6 +6,8 @@ import com.lanshiqin.start.mapper.UserMapper;
 import com.lanshiqin.start.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -16,12 +18,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(final String name) {
+    public String addUser(final String name) {
         if (name == null) {
             throw new BusinessException("姓名不能为空");
         }
         User user = new User();
+        String userId = UUID.randomUUID().toString();
         user.setName(name);
+        user.setUserId(userId);
         userMapper.insert(user);
+        return userId;
     }
 }
