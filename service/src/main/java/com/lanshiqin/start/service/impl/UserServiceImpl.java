@@ -29,4 +29,31 @@ public class UserServiceImpl implements UserService {
         userMapper.insert(user);
         return userId;
     }
+
+    @Override
+    public void deleteUser(final String userId) {
+        if (userId == null) {
+            throw new BusinessException("用户id不能为空");
+        }
+        userMapper.selectById(userId);
+    }
+
+    @Override
+    public User updateUser(final String userId, final String name) {
+        User user = userMapper.selectById(userId);
+        if (user == null) {
+            throw new BusinessException("用户不存在");
+        }
+        user.setName(name);
+        userMapper.updateById(user);
+        return user;
+    }
+
+    @Override
+    public User findById(final String userId) {
+        if (userId == null) {
+            throw new BusinessException("用户id不能为空");
+        }
+        return userMapper.selectById(userId);
+    }
 }
